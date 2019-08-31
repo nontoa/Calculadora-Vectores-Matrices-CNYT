@@ -6,7 +6,7 @@ import edu.escuelaing.CNYT.app.Complejo;
 import java.text.DecimalFormat;
 
 /**
- * Hello world!
+ * Clase encargada de la lógica de la calculadora
  *
  */
 public class App {
@@ -17,6 +17,10 @@ public class App {
     public static Complejo escalar;
     public static DecimalFormat round = new DecimalFormat("#.00");
 
+    /**
+     * Main de la clase, inicializa variable y llama al mentodo menu.
+     * @param args 
+     */
     public static void main(String[] args) {
         operacion = 0;
         vector1 = new ArrayList<Complejo>();
@@ -25,6 +29,10 @@ public class App {
         menu();
     }
 
+    /**
+     * En este método se encuentran todas las opciones para las
+     * operaciones a realizar en la calculadora.
+     */
     public static void menu() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Digite el número de la operación a realizar");
@@ -237,6 +245,9 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de la suma de vectores.
+     */
     private static void adicionVectores() {
         ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         Complejo num;
@@ -254,6 +265,9 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de calcular la inversa de un vector.
+     */
     private static void inversaVector() {
         System.out.println("La inversa del vector da como resultado");
         for (Complejo comp : vector1) {
@@ -265,6 +279,9 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de multiplicar un escalar por un vector.
+     */
     private static void multiplicacionEscalarVectores() {
         ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         for (Complejo com : vector1) {
@@ -281,6 +298,13 @@ public class App {
 
     }
 
+    /**
+     * Este metodo se encarga de la adicion de dos matrices.
+     * @param matA Primera matriz.
+     * @param matB Segunda matriz.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     */
     private static void adicionMatrices(Complejo[][] matA, Complejo[][] matB, int x, int y) {
         System.out.println("La suma de las dos matrices da como resultado");
         for (int a = 0; a < x; a++) {
@@ -299,6 +323,11 @@ public class App {
 
     }
 
+    /**
+     * Este metodo se encarga de calcular la inversa de una matriz.
+     * @param a Es la matriz inicial.
+     * @return Retorna la inversa de la matriz.
+     */
     public static double[][] inversaMatrices(double a[][]) {
 
         int n = a.length;
@@ -307,12 +336,8 @@ public class App {
         int index[] = new int[n];
         for (int i = 0; i < n; ++i) {
             b[i][i] = 1;
-        }
-
-        // Transform the matrix into an upper triangle
-        gaussian(a, index);
-
-        // Update the matrix b[i][j] with the ratios stored
+        }        
+        gaussian(a, index);        
         for (int i = 0; i < n - 1; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 for (int k = 0; k < n; ++k) {
@@ -320,9 +345,7 @@ public class App {
                             -= a[index[j]][i] * b[index[i]][k];
                 }
             }
-        }
-
-        // Perform backward substitutions
+        }        
         for (int i = 0; i < n; ++i) {
             x[n - 1][i] = b[index[n - 1]][i] / a[index[n - 1]][n - 1];
             for (int j = n - 2; j >= 0; --j) {
@@ -330,24 +353,24 @@ public class App {
                 for (int k = j + 1; k < n; ++k) {
                     x[j][i] -= a[index[j]][k] * x[k][i];
                 }
-
                 x[j][i] /= a[index[j]][j];
             }
         }
         return x;
     }
 
+    /**
+     * Este metodo ayuda a el calculo de la inversa de una matriz
+     * @param a Matriz inicial
+     * @param index Indice de la matriz a calcular.
+     */
     public static void gaussian(double a[][], int index[]) {
 
         int n = index.length;
         double c[] = new double[n];
-
-        // Initialize the index
         for (int i = 0; i < n; ++i) {
             index[i] = i;
-        }
-
-        // Find the rescaling factors, one from each row
+        }        
         for (int i = 0; i < n; ++i) {
             double c1 = 0;
             for (int j = 0; j < n; ++j) {
@@ -357,14 +380,11 @@ public class App {
                 }
             }
             c[i] = c1;
-        }
-
-        // Search the pivoting element from each column
+        }        
         int k = 0;
         for (int j = 0; j < n - 1; ++j) {
             double pi1 = 0;
             for (int i = j; i < n; ++i) {
-
                 double pi0 = Math.abs(a[index[i]][j]);
                 pi0 /= c[index[i]];
                 if (pi0 > pi1) {
@@ -372,18 +392,12 @@ public class App {
                     k = i;
                 }
             }
-
-            // Interchange rows according to the pivoting order
             int itmp = index[j];
             index[j] = index[k];
             index[k] = itmp;
             for (int i = j + 1; i < n; ++i) {
-                double pj = a[index[i]][j] / a[index[j]][j];
-
-                // Record pivoting ratios below the diagonal
-                a[index[i]][j] = pj;
-
-                // Modify other elements accordingly
+                double pj = a[index[i]][j] / a[index[j]][j];                
+                a[index[i]][j] = pj;                
                 for (int l = j + 1; l < n; ++l) {
                     a[index[i]][l] -= pj * a[index[j]][l];
                 }
@@ -391,6 +405,12 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de realizar la multiplicacion de dos matrices.
+     * @param mat1 Primera matriz.
+     * @param mat2 Segunda matriz.
+     * @param de Dimension de las matrices.
+     */
     private static void multiplicacionEscalarMatrices(Complejo[][] mat1, Complejo[][] mat2, int de) {
         Complejo[][] res = new Complejo[de][de];
         for (int x = 0; x < de; x++) {
@@ -418,6 +438,12 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de la multiplicacion de dos complejos.
+     * @param c1 Primer complejo.
+     * @param c2 Segundo complejo.
+     * @return Retorna la multiplicacion de los complejos.
+     */
     public static Complejo multiplicacion(Complejo c1, Complejo c2) {
         double x = c1.real * c2.real - c1.imag * c2.imag;
         double y = c1.real * c2.imag + c1.imag * c2.real;
@@ -425,10 +451,22 @@ public class App {
 
     }
 
+    /**
+     * Este metodo se encarga de la suma de complejos.
+     * @param c1 Primer complejo.
+     * @param c2 Segundo comolejo.
+     * @return Retorna la suma de los complejos.
+     */
     public static Complejo sumarComplejos(Complejo c1, Complejo c2) {
         return new Complejo(c1.getReal() + c2.getReal(), c1.getImag() + c2.getImag());
     }
 
+    /**
+     * Este metodo se encarga de calcular la traspuesta de una matriz.
+     * @param mat Matriz inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     */
     private static void matrizTraspuesta(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[y][x];
         for (int a = 0; a < x; a++) {
@@ -452,6 +490,12 @@ public class App {
         }
     }
 
+    /**
+     * Este metodo se encarga de calcular la conjugada de una matriz.
+     * @param mat Matriz inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     */
     private static void matrizConjugada(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[x][y];
         for (int a = 0; a < x; a++) {
