@@ -511,4 +511,15 @@ public class App {
 
     }
 
+    @Override
+    public int hashCode() {
+        return escalar.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return escalar.equals(obj);
+    }
+
+    
 }
