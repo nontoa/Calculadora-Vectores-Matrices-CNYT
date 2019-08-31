@@ -270,8 +270,9 @@ Por último veremos el resultado en este caso de la multiplicación de las matri
 
 ## Código encargado para operaciones lógicas.
 
-```
-java
+Cada método esta encargado de una tarea especifica. Hay métodos auxiliares que ayudan al calculo de alguna operacion como multiplicación y suma de números complejos.
+
+```java
 
 /**
      * Este metodo se encarga de la suma de vectores.
