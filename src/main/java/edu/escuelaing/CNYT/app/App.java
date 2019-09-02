@@ -11,21 +11,17 @@ import java.text.DecimalFormat;
  */
 public class App {
 
-    public static int operacion;
-    public static ArrayList<Complejo> vector1;
-    public static ArrayList<Complejo> vector2;
-    public static Complejo escalar;
+    public static int operacion=0;
+    public static ArrayList<Complejo> vector1 = new ArrayList<Complejo>();;
+    public static ArrayList<Complejo> vector2 = new ArrayList<Complejo>();;
+    public static Complejo escalar = new Complejo(0,0);
     public static DecimalFormat round = new DecimalFormat("#.00");
 
     /**
      * Main de la clase, inicializa variable y llama al mentodo menu.
      * @param args 
      */
-    public static void main(String[] args) {
-        operacion = 0;
-        vector1 = new ArrayList<Complejo>();
-        vector2 = new ArrayList<Complejo>();
-        escalar = new Complejo(0, 0);
+    public static void main(String[] args) {        
         menu();
     }
 
@@ -66,7 +62,7 @@ public class App {
                 for (int x = 0; x < 4; x++) {
                     numero = reader2.nextLine();
                     String[] parts = numero.split(" ");
-                    vector1.add(new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1])));
+                    vector2.add(new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1])));
                 }
                 adicionVectores();
                 break;
@@ -248,7 +244,7 @@ public class App {
     /**
      * Este metodo se encarga de la suma de vectores.
      */
-    private static void adicionVectores() {
+    public static ArrayList<Complejo> adicionVectores() {
         ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         Complejo num;
         for (int x = 0; x < 4; x++) {
@@ -263,26 +259,31 @@ public class App {
                 System.out.println(round.format(comp.getReal()) + "" + round.format(comp.getImag()) + "i");
             }
         }
+        
+        return respuesta;
     }
 
     /**
      * Este metodo se encarga de calcular la inversa de un vector.
      */
-    private static void inversaVector() {
+    public static ArrayList<Complejo> inversaVector() {
+        ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         System.out.println("La inversa del vector da como resultado");
         for (Complejo comp : vector1) {
+            respuesta.add(new Complejo(comp.getReal()*-1,comp.getImag()*-1));
             if (comp.getImag() * -1 > 0) {
                 System.out.println(round.format(comp.getReal() * -1) + "+" + round.format(comp.getImag() * -1) + "i");
             } else {
                 System.out.println(round.format(comp.getReal() * -1) + "" + round.format(comp.getImag() * -1) + "i");
             }
         }
+        return respuesta;
     }
 
     /**
      * Este metodo se encarga de multiplicar un escalar por un vector.
      */
-    private static void multiplicacionEscalarVectores() {
+    public static ArrayList<Complejo> multiplicacionEscalarVectores() {
         ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         for (Complejo com : vector1) {
             respuesta.add(multiplicacionComplejos(escalar, com));
@@ -295,6 +296,7 @@ public class App {
                 System.out.println(round.format(comp.getReal()) + "" + round.format(comp.getImag()) + "i");
             }
         }
+        return respuesta;
 
     }
 
@@ -305,11 +307,13 @@ public class App {
      * @param x Numero de filas.
      * @param y Numero de columnas.
      */
-    private static void adicionMatrices(Complejo[][] matA, Complejo[][] matB, int x, int y) {
+    public static Complejo[][] adicionMatrices(Complejo[][] matA, Complejo[][] matB, int x, int y) {
+        Complejo[][] respuesta = new Complejo[x][y];
         System.out.println("La suma de las dos matrices da como resultado");
         for (int a = 0; a < x; a++) {
             String res = "";
             for (int b = 0; b < y; b++) {
+                respuesta[a][b]=new Complejo(matA[a][b].getReal() + matB[a][b].getReal(),matA[a][b].getImag() + matB[a][b].getImag());
                 if (matA[a][b].getImag() + matB[a][b].getImag() > 0) {
                     res += round.format(matA[a][b].getReal() + matB[a][b].getReal()) + "+" + round.format(matA[a][b].getImag() + matB[a][b].getImag()) + "i  ";
                     //System.out.println(round.format(matA[a][b].getReal()+matB[a][b].getReal())+"+"+ round.format(matA[a][b].getImag()+matB[a][b].getImag())+"i");
@@ -320,6 +324,7 @@ public class App {
             }
             System.out.println(res);
         }
+        return respuesta;
 
     }
 
@@ -411,7 +416,7 @@ public class App {
      * @param mat2 Segunda matriz.
      * @param de Dimension de las matrices.
      */
-    private static void multiplicacionEscalarMatrices(Complejo[][] mat1, Complejo[][] mat2, int de) {
+    public static Complejo[][] multiplicacionEscalarMatrices(Complejo[][] mat1, Complejo[][] mat2, int de) {
         Complejo[][] res = new Complejo[de][de];
         for (int x = 0; x < de; x++) {
             for (int y = 0; y < de; y++) {
@@ -436,6 +441,7 @@ public class App {
             }
             System.out.println(s);
         }
+        return res;
     }
 
     /**
@@ -467,7 +473,7 @@ public class App {
      * @param x Numero de filas.
      * @param y Numero de columnas.
      */
-    private static void matrizTraspuesta(Complejo[][] mat, int x, int y) {
+    public static void matrizTraspuesta(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[y][x];
         for (int a = 0; a < x; a++) {
             for (int b = 0; b < y; b++) {
@@ -496,7 +502,7 @@ public class App {
      * @param x Numero de filas.
      * @param y Numero de columnas.
      */
-    private static void matrizConjugada(Complejo[][] mat, int x, int y) {
+    public static void matrizConjugada(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[x][y];
         for (int a = 0; a < x; a++) {
             for (int b = 0; b < y; b++) {
@@ -520,39 +526,46 @@ public class App {
 
     }
 
-    private static void matrizAdjunta() {
+    public static void matrizAdjunta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void accionMatrizVector() {
+    public static void accionMatrizVector() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void normaMatriz() {
+    public static void normaMatriz() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void distanciaMatrices() {
+    public static void distanciaMatrices() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void matrizUnitaria() {
+    public static void matrizUnitaria() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void matrizHermitian() {
+    public static void matrizHermitian() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void productoTensor() {
+    public static void productoTensor() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static Complejo multiplicacionComplejos(Complejo c1, Complejo c2) {
+    public static Complejo multiplicacionComplejos(Complejo c1, Complejo c2) {
         double x = c1.real * c2.real - c1.imag * c2.imag;
         double y = c1.real * c2.imag + c1.imag * c2.real;
         return (new Complejo(x, y));
 
+    }
+    
+    public static void iniciailizar(){    
+        operacion=0;
+        vector1.clear();
+        vector2.clear();
+        escalar= new Complejo(0,0);
     }
 
     @Override
