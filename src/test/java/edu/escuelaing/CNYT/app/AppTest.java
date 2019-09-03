@@ -173,4 +173,74 @@ public class AppTest
         assertEquals("237,33", round.format(res[1][1].getReal()));
         assertEquals("1021,05", round.format(res[1][1].getImag()));
     }
+    
+    /**
+     * Este metodo se encarga de probar la operacion de la transpuesta
+     * de una matriz
+     */
+    public void testMatrizTranspuesta(){
+        Complejo[][] res = new Complejo[2][2];
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(78.36, -25);
+        mat1[0][1] = new Complejo(66.66, 45.6);
+        mat1[1][0] = new Complejo(47.36, -18.73);
+        mat1[1][1] = new Complejo(78, 17);        
+        res = App.matrizTraspuesta(mat1, 2,2);
+        assertEquals("78,36", round.format(res[0][0].getReal()));
+        assertEquals("-25,00", round.format(res[0][0].getImag()));
+        assertEquals("47,36", round.format(res[0][1].getReal()));
+        assertEquals("-18,73", round.format(res[0][1].getImag()));
+        assertEquals("66,66", round.format(res[1][0].getReal()));
+        assertEquals("45,60", round.format(res[1][0].getImag()));
+        assertEquals("78,00", round.format(res[1][1].getReal()));
+        assertEquals("17,00", round.format(res[1][1].getImag()));
+        
+    }
+    
+    /**
+     * Este metodo se encarga de probar la operacion de la conjugada
+     * de una matriz
+     */
+    public void testMatrizConjugada(){
+        Complejo[][] res = new Complejo[2][2];
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(-88.3, 45.6);
+        mat1[0][1] = new Complejo(66.66, 41.23);
+        mat1[1][0] = new Complejo(1.36, -54.45);
+        mat1[1][1] = new Complejo(8,36);        
+        res = App.matrizConjugada(mat1, 2,2);
+        assertEquals("-88,30", round.format(res[0][0].getReal()));
+        assertEquals("-45,60", round.format(res[0][0].getImag()));
+        assertEquals("66,66", round.format(res[0][1].getReal()));
+        assertEquals("-41,23", round.format(res[0][1].getImag()));
+        assertEquals("1,36", round.format(res[1][0].getReal()));
+        assertEquals("54,45", round.format(res[1][0].getImag()));
+        assertEquals("8,00", round.format(res[1][1].getReal()));
+        assertEquals("-36,00", round.format(res[1][1].getImag()));
+        
+    }
+    
+    /**
+     * Este metodo se encarga de probar la operacion de la norma
+     * de una matriz
+     */
+    public void testMatrizNorma(){
+        double res = 0.0;
+        App.iniciailizar();
+        double[][] mat1 = new double[3][3];        
+        mat1[0][0] = 4.00;
+        mat1[0][1] = 5.00;
+        mat1[0][2] = -1.00;
+        mat1[1][0] = 3.00;
+        mat1[1][1] = 0.00;
+        mat1[1][2] = 4.00;
+        mat1[2][0] = -7.00;
+        mat1[2][1] = -2.00;
+        mat1[2][2] = 6.00;
+        res = App.normaMatriz(mat1, 3,3);
+        assertEquals("15,00", round.format(res));        
+        
+    }
 }

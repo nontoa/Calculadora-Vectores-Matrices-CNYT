@@ -11,23 +11,26 @@ import java.text.DecimalFormat;
  */
 public class App {
 
-    public static int operacion=0;
-    public static ArrayList<Complejo> vector1 = new ArrayList<Complejo>();;
-    public static ArrayList<Complejo> vector2 = new ArrayList<Complejo>();;
-    public static Complejo escalar = new Complejo(0,0);
+    public static int operacion = 0;
+    public static ArrayList<Complejo> vector1 = new ArrayList<Complejo>();
+    ;
+    public static ArrayList<Complejo> vector2 = new ArrayList<Complejo>();
+    ;
+    public static Complejo escalar = new Complejo(0, 0);
     public static DecimalFormat round = new DecimalFormat("#.00");
 
     /**
      * Main de la clase, inicializa variable y llama al mentodo menu.
-     * @param args 
+     *
+     * @param args
      */
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         menu();
     }
 
     /**
-     * En este método se encuentran todas las opciones para las
-     * operaciones a realizar en la calculadora.
+     * En este método se encuentran todas las opciones para las operaciones a
+     * realizar en la calculadora.
      */
     public static void menu() {
         Scanner reader = new Scanner(System.in);
@@ -224,7 +227,23 @@ public class App {
                 accionMatrizVector();
                 break;
             case (11):
-                normaMatriz();
+                Scanner r = new Scanner(System.in);
+                int x01,
+                 y01;
+                System.out.println("Ingrese el numero de filas");
+                x = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas");
+                y = reader2.nextInt();
+                double[][] matx = new double[x][y];                                
+                for (int f = 0; f < x; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < y; t++) {
+                        numero = r.nextLine();                        
+                        matx[f][t] = Double.parseDouble(numero);
+                    }
+                }                
+                r.close();                
+                normaMatriz(matx,x,y);
                 break;
             case (12):
                 distanciaMatrices();
@@ -259,7 +278,7 @@ public class App {
                 System.out.println(round.format(comp.getReal()) + "" + round.format(comp.getImag()) + "i");
             }
         }
-        
+
         return respuesta;
     }
 
@@ -270,7 +289,7 @@ public class App {
         ArrayList<Complejo> respuesta = new ArrayList<Complejo>();
         System.out.println("La inversa del vector da como resultado");
         for (Complejo comp : vector1) {
-            respuesta.add(new Complejo(comp.getReal()*-1,comp.getImag()*-1));
+            respuesta.add(new Complejo(comp.getReal() * -1, comp.getImag() * -1));
             if (comp.getImag() * -1 > 0) {
                 System.out.println(round.format(comp.getReal() * -1) + "+" + round.format(comp.getImag() * -1) + "i");
             } else {
@@ -302,6 +321,7 @@ public class App {
 
     /**
      * Este metodo se encarga de la adicion de dos matrices.
+     *
      * @param matA Primera matriz.
      * @param matB Segunda matriz.
      * @param x Numero de filas.
@@ -313,7 +333,7 @@ public class App {
         for (int a = 0; a < x; a++) {
             String res = "";
             for (int b = 0; b < y; b++) {
-                respuesta[a][b]=new Complejo(matA[a][b].getReal() + matB[a][b].getReal(),matA[a][b].getImag() + matB[a][b].getImag());
+                respuesta[a][b] = new Complejo(matA[a][b].getReal() + matB[a][b].getReal(), matA[a][b].getImag() + matB[a][b].getImag());
                 if (matA[a][b].getImag() + matB[a][b].getImag() > 0) {
                     res += round.format(matA[a][b].getReal() + matB[a][b].getReal()) + "+" + round.format(matA[a][b].getImag() + matB[a][b].getImag()) + "i  ";
                     //System.out.println(round.format(matA[a][b].getReal()+matB[a][b].getReal())+"+"+ round.format(matA[a][b].getImag()+matB[a][b].getImag())+"i");
@@ -330,6 +350,7 @@ public class App {
 
     /**
      * Este metodo se encarga de calcular la inversa de una matriz.
+     *
      * @param a Es la matriz inicial.
      * @return Retorna la inversa de la matriz.
      */
@@ -341,8 +362,8 @@ public class App {
         int index[] = new int[n];
         for (int i = 0; i < n; ++i) {
             b[i][i] = 1;
-        }        
-        gaussian(a, index);        
+        }
+        gaussian(a, index);
         for (int i = 0; i < n - 1; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 for (int k = 0; k < n; ++k) {
@@ -350,7 +371,7 @@ public class App {
                             -= a[index[j]][i] * b[index[i]][k];
                 }
             }
-        }        
+        }
         for (int i = 0; i < n; ++i) {
             x[n - 1][i] = b[index[n - 1]][i] / a[index[n - 1]][n - 1];
             for (int j = n - 2; j >= 0; --j) {
@@ -366,6 +387,7 @@ public class App {
 
     /**
      * Este metodo ayuda a el calculo de la inversa de una matriz
+     *
      * @param a Matriz inicial
      * @param index Indice de la matriz a calcular.
      */
@@ -375,7 +397,7 @@ public class App {
         double c[] = new double[n];
         for (int i = 0; i < n; ++i) {
             index[i] = i;
-        }        
+        }
         for (int i = 0; i < n; ++i) {
             double c1 = 0;
             for (int j = 0; j < n; ++j) {
@@ -385,7 +407,7 @@ public class App {
                 }
             }
             c[i] = c1;
-        }        
+        }
         int k = 0;
         for (int j = 0; j < n - 1; ++j) {
             double pi1 = 0;
@@ -401,8 +423,8 @@ public class App {
             index[j] = index[k];
             index[k] = itmp;
             for (int i = j + 1; i < n; ++i) {
-                double pj = a[index[i]][j] / a[index[j]][j];                
-                a[index[i]][j] = pj;                
+                double pj = a[index[i]][j] / a[index[j]][j];
+                a[index[i]][j] = pj;
                 for (int l = j + 1; l < n; ++l) {
                     a[index[i]][l] -= pj * a[index[j]][l];
                 }
@@ -412,6 +434,7 @@ public class App {
 
     /**
      * Este metodo se encarga de realizar la multiplicacion de dos matrices.
+     *
      * @param mat1 Primera matriz.
      * @param mat2 Segunda matriz.
      * @param de Dimension de las matrices.
@@ -446,6 +469,7 @@ public class App {
 
     /**
      * Este metodo se encarga de la multiplicacion de dos complejos.
+     *
      * @param c1 Primer complejo.
      * @param c2 Segundo complejo.
      * @return Retorna la multiplicacion de los complejos.
@@ -459,6 +483,7 @@ public class App {
 
     /**
      * Este metodo se encarga de la suma de complejos.
+     *
      * @param c1 Primer complejo.
      * @param c2 Segundo comolejo.
      * @return Retorna la suma de los complejos.
@@ -469,11 +494,12 @@ public class App {
 
     /**
      * Este metodo se encarga de calcular la traspuesta de una matriz.
+     *
      * @param mat Matriz inicial.
      * @param x Numero de filas.
      * @param y Numero de columnas.
      */
-    public static void matrizTraspuesta(Complejo[][] mat, int x, int y) {
+    public static Complejo[][] matrizTraspuesta(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[y][x];
         for (int a = 0; a < x; a++) {
             for (int b = 0; b < y; b++) {
@@ -494,15 +520,17 @@ public class App {
             }
             System.out.println(s);
         }
+        return res;
     }
 
     /**
      * Este metodo se encarga de calcular la conjugada de una matriz.
+     *
      * @param mat Matriz inicial.
      * @param x Numero de filas.
      * @param y Numero de columnas.
      */
-    public static void matrizConjugada(Complejo[][] mat, int x, int y) {
+    public static Complejo[][] matrizConjugada(Complejo[][] mat, int x, int y) {
         Complejo[][] res = new Complejo[x][y];
         for (int a = 0; a < x; a++) {
             for (int b = 0; b < y; b++) {
@@ -523,6 +551,7 @@ public class App {
             }
             System.out.println(s);
         }
+        return res;
 
     }
 
@@ -534,8 +563,17 @@ public class App {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void normaMatriz() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static double normaMatriz(double [][] mat,int x, int y) {
+        double respuesta=0;
+        for(int a=0;a<x;a++){
+            double num=0;
+            for(int b=0;b<y;b++){
+               num+=Math.abs(mat[a][b]); 
+            }
+            if (num>respuesta) respuesta=num;
+        }
+        System.out.println("La norma de la matriz es: "+respuesta);
+        return respuesta;
     }
 
     public static void distanciaMatrices() {
@@ -560,23 +598,22 @@ public class App {
         return (new Complejo(x, y));
 
     }
-    
-    public static void iniciailizar(){    
-        operacion=0;
+
+    public static void iniciailizar() {
+        operacion = 0;
         vector1.clear();
         vector2.clear();
-        escalar= new Complejo(0,0);
-    }
-
-    @Override
-    public int hashCode() {
-        return escalar.hashCode();
+        escalar = new Complejo(0, 0);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return escalar.equals(obj);
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
