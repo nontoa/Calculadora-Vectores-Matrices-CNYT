@@ -234,16 +234,16 @@ public class App {
                 x = reader2.nextInt();
                 System.out.println("Ingrese el numero de columas");
                 y = reader2.nextInt();
-                double[][] matx = new double[x][y];                                
+                double[][] matx = new double[x][y];
                 for (int f = 0; f < x; f++) {
                     System.out.println("Ingrese los datos de la fila " + f);
                     for (int t = 0; t < y; t++) {
-                        numero = r.nextLine();                        
+                        numero = r.nextLine();
                         matx[f][t] = Double.parseDouble(numero);
                     }
-                }                
-                r.close();                
-                normaMatriz(matx,x,y);
+                }
+                r.close();
+                normaMatriz(matx, x, y);
                 break;
             case (12):
                 distanciaMatrices();
@@ -255,7 +255,32 @@ public class App {
                 matrizHermitian();
                 break;
             case (15):
-                productoTensor();
+                Scanner read = new Scanner(System.in);
+                int dim;
+                System.out.println("Ingrese la dimension de la matriz");
+                dim = reader2.nextInt();
+                Complejo[][] mata = new Complejo[dim][dim];
+                Complejo[][] matb = new Complejo[dim][dim];
+                System.out.println("Ingrese los datos para la matriz A separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < dim; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < dim; t++) {
+                        numero = read.nextLine();
+                        String[] parts = numero.split(" ");
+                        mata[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                System.out.println("Ingrese los datos para la matriz B separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < dim; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < dim; t++) {
+                        numero = read.nextLine();
+                        String[] parts = numero.split(" ");
+                        matb[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                read.close();                
+                productoTensor(mata,matb,dim);
                 break;
         }
     }
@@ -563,16 +588,18 @@ public class App {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static double normaMatriz(double [][] mat,int x, int y) {
-        double respuesta=0;
-        for(int a=0;a<x;a++){
-            double num=0;
-            for(int b=0;b<y;b++){
-               num+=Math.abs(mat[a][b]); 
+    public static double normaMatriz(double[][] mat, int x, int y) {
+        double respuesta = 0;
+        for (int a = 0; a < x; a++) {
+            double num = 0;
+            for (int b = 0; b < y; b++) {
+                num += Math.abs(mat[a][b]);
             }
-            if (num>respuesta) respuesta=num;
+            if (num > respuesta) {
+                respuesta = num;
+            }
         }
-        System.out.println("La norma de la matriz es: "+respuesta);
+        System.out.println("La norma de la matriz es: " + respuesta);
         return respuesta;
     }
 
@@ -588,8 +615,48 @@ public class App {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void productoTensor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static Complejo[][] productoTensor(Complejo[][] mat1, Complejo[][] mat2, int d) {
+        Complejo[][] res = new Complejo[d*d][d*d];
+        Complejo[][] aux = new Complejo[d][d];
+        int a=0;
+        int b=0;
+        for(int x=0;x<d;x++){
+            for(int y=0;y<d;y++){                
+                aux = tensor(mat1[x][y],mat2,d);                 
+                for(int i=0;i<d;i++){
+                    for(int j=0;j<d;j++){
+                        if(y>0 || x>0){
+                            if(y>0 && x>0) res[i+x+1][j+y+1]=aux[i][j];
+                            else if(y>0) res[i][j+y+1]=aux[i][j];
+                            else if(x>0) res[i+x+1][j]=aux[i][j];
+                        }
+                        
+                        else res[i][j]=aux[i][j];
+                    }
+                }
+            }
+        }
+        System.out.println("El resultado del producto tensor es: ");
+        String s;
+        for(int f=0;f<d*d;f++){
+            s="";
+            for(int t=0;t<d*d;t++){
+                if (res[f][t].getImag()>0) s+= round.format(res[f][t].getReal())+"+"+round.format(res[f][t].getImag())+"i ";
+                else s+=round.format(res[f][t].getReal())+""+round.format(res[f][t].getImag())+"i ";
+            }
+            System.out.println(s);
+        }
+        return res;
+    }
+    
+    public static Complejo[][] tensor(Complejo num,Complejo[][] mat, int d){
+        Complejo[][] ret = new Complejo[d][d];
+        for(int x=0;x<d;x++){
+            for(int y=0;y<d;y++){
+                ret[x][y]= multiplicacionComplejos(num, mat[x][y]);
+            }
+        }
+        return ret;
     }
 
     public static Complejo multiplicacionComplejos(Complejo c1, Complejo c2) {

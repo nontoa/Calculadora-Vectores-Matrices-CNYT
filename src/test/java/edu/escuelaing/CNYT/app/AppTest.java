@@ -243,4 +243,63 @@ public class AppTest
         assertEquals("15,00", round.format(res));        
         
     }
+    
+    /**
+     * Este metodo se encarga de probar la operacion del producto tensor
+     * de dos matrices.
+     */
+    public void testProductoTensor(){
+        Complejo[][] res = new Complejo[4][4];
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(1, -3);
+        mat1[0][1] = new Complejo(-3, 4);
+        mat1[1][0] = new Complejo(7,-1);
+        mat1[1][1] = new Complejo(2,2);  
+        
+        Complejo[][] mat2 = new Complejo[2][2];        
+        mat2[0][0] = new Complejo(2,-4);
+        mat2[0][1] = new Complejo(3,8);
+        mat2[1][0] = new Complejo(1,-2);
+        mat2[1][1] = new Complejo(3,5);     
+        
+        res = App.productoTensor(mat1,mat2,2);
+            
+        assertEquals("-10,00", round.format(res[0][0].getReal()));
+        assertEquals("-10,00", round.format(res[0][0].getImag()));
+        assertEquals("27,00", round.format(res[0][1].getReal()));
+        assertEquals("-1,00", round.format(res[0][1].getImag()));
+        assertEquals("10,00", round.format(res[0][2].getReal()));
+        assertEquals("20,00", round.format(res[0][2].getImag()));
+        assertEquals("-41,00", round.format(res[0][3].getReal()));
+        assertEquals("-12,00", round.format(res[0][3].getImag()));
+        
+        assertEquals("-5,00", round.format(res[1][0].getReal()));
+        assertEquals("-5,00", round.format(res[1][0].getImag()));
+        assertEquals("18,00", round.format(res[1][1].getReal()));
+        assertEquals("-4,00", round.format(res[1][1].getImag()));
+        assertEquals("5,00", round.format(res[1][2].getReal()));
+        assertEquals("10,00", round.format(res[1][2].getImag()));
+        assertEquals("-29,00", round.format(res[1][3].getReal()));
+        assertEquals("-3,00", round.format(res[1][3].getImag()));
+        
+        assertEquals("10,00", round.format(res[2][0].getReal()));
+        assertEquals("-30,00", round.format(res[2][0].getImag()));
+        assertEquals("29,00", round.format(res[2][1].getReal()));
+        assertEquals("53,00", round.format(res[2][1].getImag()));
+        assertEquals("12,00", round.format(res[2][2].getReal()));
+        assertEquals("-4,00", round.format(res[2][2].getImag()));
+        assertEquals("-10,00", round.format(res[2][3].getReal()));
+        assertEquals("22,00", round.format(res[2][3].getImag()));
+        
+        assertEquals("5,00", round.format(res[3][0].getReal()));
+        assertEquals("-15,00", round.format(res[3][0].getImag()));
+        assertEquals("26,00", round.format(res[3][1].getReal()));
+        assertEquals("32,00", round.format(res[3][1].getImag()));
+        assertEquals("6,00", round.format(res[3][2].getReal()));
+        assertEquals("-2,00", round.format(res[3][2].getImag()));
+        assertEquals("-4,00", round.format(res[3][3].getReal()));
+        assertEquals("16,00", round.format(res[3][3].getImag()));
+        
+    }
 }
