@@ -221,38 +221,147 @@ public class App {
                 matrizConjugada(matA2, x2, y2);
                 break;
             case (9):
-                matrizAdjunta();
+                Scanner read1 = new Scanner(System.in);
+                int xx,
+                 yy;
+                System.out.println("Ingrese el numero de filas");
+                xx = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas");
+                yy = reader2.nextInt();
+                Complejo[][] matt1 = new Complejo[xx][yy];
+                System.out.println("Ingrese los datos para la matriz separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < xx; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < yy; t++) {
+                        numero = read1.nextLine();
+                        String[] parts = numero.split(" ");
+                        matt1[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                read1.close();
+                matrizAdjunta(matt1, xx, yy);
                 break;
             case (10):
-                accionMatrizVector();
+                Scanner read234 = new Scanner(System.in);
+                int xxx2,
+                 yyy2;
+                System.out.println("Ingrese el numero de filas de la matriz");
+                xxx2 = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas de la matriz");
+                yyy2 = reader2.nextInt();
+                Complejo[][] matr1 = new Complejo[xxx2][yyy2];
+                Complejo[] vect = new Complejo[yyy2];
+                System.out.println("Ingrese los datos para la matriz separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < xxx2; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < yyy2; t++) {
+                        numero = read234.nextLine();
+                        String[] parts = numero.split(" ");
+                        matr1[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                System.out.println("Ingrese los datos para el vector separado por un espacio la parte real de la imaginaria");
+                for (int i = 0; i < yyy2; i++) {
+                    numero = read234.nextLine();
+                    String[] parts = numero.split(" ");
+                    vect[i] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                }
+                read234.close();
+                accionMatrizVector(matr1, vect, xxx2, yyy2);
                 break;
             case (11):
                 Scanner r = new Scanner(System.in);
                 int x01,
                  y01;
                 System.out.println("Ingrese el numero de filas");
-                x = reader2.nextInt();
+                x01 = reader2.nextInt();
                 System.out.println("Ingrese el numero de columas");
-                y = reader2.nextInt();
-                double[][] matx = new double[x][y];
-                for (int f = 0; f < x; f++) {
+                y01 = reader2.nextInt();
+                Complejo[][] matx = new Complejo[x01][y01];
+                System.out.println("Ingrese los datos para el vector separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < x01; f++) {
                     System.out.println("Ingrese los datos de la fila " + f);
-                    for (int t = 0; t < y; t++) {
-                        numero = r.nextLine();
-                        matx[f][t] = Double.parseDouble(numero);
+                    for (int t = 0; t < y01; t++) {
+                        numero = r.nextLine();                        
+                        String[] parts = numero.split(" ");
+                        matx[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
                     }
                 }
                 r.close();
-                normaMatriz(matx, x, y);
+                normaMatriz(matx, x01, y01);
                 break;
             case (12):
-                distanciaMatrices();
+                Scanner reader33 = new Scanner(System.in);
+                int x7,
+                 y7;
+                System.out.println("Ingrese el numero de filas");
+                x7 = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas");
+                y7 = reader2.nextInt();
+                Complejo[][] matA7 = new Complejo[x7][y7];
+                Complejo[][] matB7 = new Complejo[x7][y7];
+                System.out.println("Ingrese los datos para la matriz A separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < x7; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < y7; t++) {
+                        numero = reader33.nextLine();
+                        String[] parts = numero.split(" ");
+                        matA7[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                System.out.println("Ingrese los datos para la matriz B separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < x7; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < y7; t++) {
+                        numero = reader33.nextLine();
+                        String[] parts = numero.split(" ");
+                        matB7[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                reader33.close();
+                distanciaMatrices(matA7,matB7,x7,y7);
                 break;
             case (13):
-                matrizUnitaria();
+                Scanner read23 = new Scanner(System.in);
+                int xx2,
+                 yy2;
+                System.out.println("Ingrese el numero de filas");
+                xx2 = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas");
+                yy2 = reader2.nextInt();
+                Complejo[][] matr = new Complejo[xx2][yy2];
+                System.out.println("Ingrese los datos para la matriz separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < xx2; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < yy2; t++) {
+                        numero = read23.nextLine();
+                        String[] parts = numero.split(" ");
+                        matr[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                read23.close();
+                matrizUnitaria(matr, xx2, yy2);
                 break;
             case (14):
-                matrizHermitian();
+                Scanner read22 = new Scanner(System.in);
+                int xx1,
+                 yy1;
+                System.out.println("Ingrese el numero de filas");
+                xx1 = reader2.nextInt();
+                System.out.println("Ingrese el numero de columas");
+                yy1 = reader2.nextInt();
+                Complejo[][] matt01 = new Complejo[xx1][yy1];
+                System.out.println("Ingrese los datos para la matriz separado por un espacio la parte real de la imaginaria");
+                for (int f = 0; f < xx1; f++) {
+                    System.out.println("Ingrese los datos de la fila " + f);
+                    for (int t = 0; t < yy1; t++) {
+                        numero = read22.nextLine();
+                        String[] parts = numero.split(" ");
+                        matt01[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+                    }
+                }
+                read22.close();
+                matrizHermitian(matt01, xx1, yy1);
                 break;
             case (15):
                 Scanner read = new Scanner(System.in);
@@ -279,8 +388,8 @@ public class App {
                         matb[f][t] = new Complejo(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
                     }
                 }
-                read.close();                
-                productoTensor(mata,matb,dim);
+                read.close();
+                productoTensor(mata, matb, dim);
                 break;
         }
     }
@@ -373,6 +482,25 @@ public class App {
 
     }
 
+    /**
+     * Este metodo se encarga de la resta de dos matrices.
+     *
+     * @param matA Primera matriz.
+     * @param matB Segunda matriz.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     */
+    public static Complejo[][] restaMatrices(Complejo[][] matA, Complejo[][] matB, int x, int y) {
+        Complejo[][] respuesta = new Complejo[x][y];        
+        for (int a = 0; a < x; a++) {            
+            for (int b = 0; b < y; b++) {
+                respuesta[a][b] = new Complejo(matA[a][b].getReal() - matB[a][b].getReal(), matA[a][b].getImag() - matB[a][b].getImag());                
+            }            
+        }
+        return respuesta;
+
+    }
+    
     /**
      * Este metodo se encarga de calcular la inversa de una matriz.
      *
@@ -580,85 +708,217 @@ public class App {
 
     }
 
-    public static void matrizAdjunta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void accionMatrizVector() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static double normaMatriz(double[][] mat, int x, int y) {
-        double respuesta = 0;
-        for (int a = 0; a < x; a++) {
-            double num = 0;
-            for (int b = 0; b < y; b++) {
-                num += Math.abs(mat[a][b]);
+    /**
+     * Este metodo se encarga de calcular la matriz adjunta.
+     * @param mat Matriz inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna la matriz adjunta.
+     */
+    public static Complejo[][] matrizAdjunta(Complejo[][] mat, int x, int y) {
+        Complejo[][] Trasp = matrizTraspuesta(mat, x, y);
+        Complejo[][] res = matrizConjugada(Trasp, x, y);
+        System.out.println("El resultado de la matriz adjunta es: ");
+        String s;
+        for (int f = 0; f < x; f++) {
+            s = "";
+            for (int t = 0; t < y; t++) {
+                if (res[f][t].getImag() > 0) {
+                    s += round.format(res[f][t].getReal()) + "+" + round.format(res[f][t].getImag()) + "i ";
+                } else {
+                    s += round.format(res[f][t].getReal()) + "" + round.format(res[f][t].getImag()) + "i ";
+                }
             }
-            if (num > respuesta) {
-                respuesta = num;
+            System.out.println(s);
+        }
+        return res;
+    }
+
+    /**
+     * Este metodo se encarga de la multiplicacion de una matriz por un vector.
+     * @param mat Matriz inicial.
+     * @param vec Vector inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna el vector resultante de la multiplicacion.
+     */
+    public static Complejo[] accionMatrizVector(Complejo[][] mat, Complejo[] vec, int x, int y) {
+        Complejo[] res = new Complejo[x];
+        Complejo suma;
+        for (int i = 0; i < x; i++) {
+            suma = new Complejo(0, 0);
+            for (int j = 0; j < y; j++) {
+                suma = sumarComplejos(suma, multiplicacionComplejos(mat[i][j], vec[j]));
+            }
+            res[i] = suma;
+
+        }
+        System.out.println("El resultado de la accion matriz vector es :");
+        for (int i = 0; i < x; i++) {
+            if (res[i].getImag() > 0) {
+                System.out.println(round.format(res[i].getReal()) + "+" + round.format(res[i].getImag()) + "i ");
+            } else {
+                System.out.println(round.format(res[i].getReal()) + "" + round.format(res[i].getImag()) + "i ");
             }
         }
-        System.out.println("La norma de la matriz es: " + respuesta);
+        return res;
+
+    }
+
+    /**
+     * Este metodo se encarga de calcular la norma de una matriz.
+     * @param mat Matriz inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna la norma de la matriz.
+     */
+    public static double normaMatriz(Complejo[][] mat, int x, int y) {
+        double respuesta = 0.0;
+        Complejo[][] adj = new Complejo[x][y];
+        Complejo[][] res= new Complejo[x][y];
+        adj=matrizAdjunta(mat, x, y);
+        res=multiplicacionEscalarMatrices(adj, mat, x);
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if(i == j) respuesta+=res[i][j].getReal();
+            }
+        }
+        System.out.println("La norma de la matriz es: "+ Math.sqrt(respuesta));
+        return Math.sqrt(respuesta);
+    }
+
+    /**
+     * Este metodo se encarga de calcular la distancia entre dos matrices.
+     * @param matA Matriz 1 incial.
+     * @param matB Matriz 2 inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna la distancia entre las dos matrices.
+     */
+    public static double distanciaMatrices(Complejo[][] matA, Complejo[][] matB, int x, int y) {
+        Complejo[][] res = restaMatrices(matA, matB, x, y);
+        double respuesta = normaMatriz(res, x, y);
+        System.out.println("La distancia entre las matrices es de: " + round.format(respuesta));
         return respuesta;
     }
 
-    public static void distanciaMatrices() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Este metodo se encarga de verificar si una matriz es unitaria.
+     * @param mat Matriz incial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna un booleano.
+     */
+    public static Boolean matrizUnitaria(Complejo[][] mat, int x, int y) {
+        Complejo[][] adj = matrizAdjunta(mat, x, y);
+        Complejo[][] res = multiplicacionEscalarMatrices(adj, mat, x);
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (i == j) {
+                    if (res[i][j].getReal() != 1.0) {
+                        System.out.println("La matriz no es Unitaria");
+                        return false;
+                    }
+                }
+            }
+        }
+        System.out.println("La matriz si es Unitaria");
+        return true;
     }
 
-    public static void matrizUnitaria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Este metodo se encarga de verificar si una matriz es Hermitiana.
+     * @param mat Matriz inicial.
+     * @param x Numero de filas.
+     * @param y Numero de columnas.
+     * @return Retorna un booleano.
+     */
+    public static Boolean matrizHermitian(Complejo[][] mat, int x, int y) {
+        Complejo[][] adj = matrizAdjunta(mat, x, y);
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (adj[i][j].getReal() != mat[i][j].getReal() && adj[i][j].getImag() != mat[i][j].getImag()) {
+                    System.out.println("La matriz no es Hermitiana");
+                    return false;
+                }
+            }
+        }
+        System.out.println("La matriz si es Hermitiana");
+        return true;
     }
 
-    public static void matrizHermitian() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     * Este metodo se encarga de calcular el poducto tensor entre dos matrices nxm.
+     * @param mat1 Matriz 2 inicial.
+     * @param mat2 Matriz 2 inicial.
+     * @param d Dimension de las matrices.
+     * @return Retorna la matriz resultante al realizar el producto tensor.
+     */
     public static Complejo[][] productoTensor(Complejo[][] mat1, Complejo[][] mat2, int d) {
-        Complejo[][] res = new Complejo[d*d][d*d];
+        Complejo[][] res = new Complejo[d * d][d * d];
         Complejo[][] aux = new Complejo[d][d];
-        int a=0;
-        int b=0;
-        for(int x=0;x<d;x++){
-            for(int y=0;y<d;y++){                
-                aux = tensor(mat1[x][y],mat2,d);                 
-                for(int i=0;i<d;i++){
-                    for(int j=0;j<d;j++){
-                        if(y>0 || x>0){
-                            if(y>0 && x>0) res[i+x+1][j+y+1]=aux[i][j];
-                            else if(y>0) res[i][j+y+1]=aux[i][j];
-                            else if(x>0) res[i+x+1][j]=aux[i][j];
+        int a = 0;
+        int b = 0;
+        for (int x = 0; x < d; x++) {
+            for (int y = 0; y < d; y++) {
+                aux = tensor(mat1[x][y], mat2, d);
+                for (int i = 0; i < d; i++) {
+                    for (int j = 0; j < d; j++) {
+                        if (y > 0 || x > 0) {
+                            if (y > 0 && x > 0) {
+                                res[i + x + 1][j + y + 1] = aux[i][j];
+                            } else if (y > 0) {
+                                res[i][j + y + 1] = aux[i][j];
+                            } else if (x > 0) {
+                                res[i + x + 1][j] = aux[i][j];
+                            }
+                        } else {
+                            res[i][j] = aux[i][j];
                         }
-                        
-                        else res[i][j]=aux[i][j];
                     }
                 }
             }
         }
         System.out.println("El resultado del producto tensor es: ");
         String s;
-        for(int f=0;f<d*d;f++){
-            s="";
-            for(int t=0;t<d*d;t++){
-                if (res[f][t].getImag()>0) s+= round.format(res[f][t].getReal())+"+"+round.format(res[f][t].getImag())+"i ";
-                else s+=round.format(res[f][t].getReal())+""+round.format(res[f][t].getImag())+"i ";
+        for (int f = 0; f < d * d; f++) {
+            s = "";
+            for (int t = 0; t < d * d; t++) {
+                if (res[f][t].getImag() > 0) {
+                    s += round.format(res[f][t].getReal()) + "+" + round.format(res[f][t].getImag()) + "i ";
+                } else {
+                    s += round.format(res[f][t].getReal()) + "" + round.format(res[f][t].getImag()) + "i ";
+                }
             }
             System.out.println(s);
         }
         return res;
     }
-    
-    public static Complejo[][] tensor(Complejo num,Complejo[][] mat, int d){
+
+    /**
+     * Este metodo ayuda a calcular el producto tensor. Calcula la multiplicacion
+     * de un numero complejo y una matriz.
+     * @param num Numero Complejo.
+     * @param mat Matriz incial.
+     * @param d Dimension de la matriz.
+     * @return Retorna la matriz resultante de la multiplicacion.
+     */
+    public static Complejo[][] tensor(Complejo num, Complejo[][] mat, int d) {
         Complejo[][] ret = new Complejo[d][d];
-        for(int x=0;x<d;x++){
-            for(int y=0;y<d;y++){
-                ret[x][y]= multiplicacionComplejos(num, mat[x][y]);
+        for (int x = 0; x < d; x++) {
+            for (int y = 0; y < d; y++) {
+                ret[x][y] = multiplicacionComplejos(num, mat[x][y]);
             }
         }
         return ret;
     }
 
+    /**
+     * Este metodo se encarga de la multiplicacion de dos complejos.
+     * @param c1 Complejo 1.
+     * @param c2 Complejo 2.
+     * @return Retorna un complejo.
+     */
     public static Complejo multiplicacionComplejos(Complejo c1, Complejo c2) {
         double x = c1.real * c2.real - c1.imag * c2.imag;
         double y = c1.real * c2.imag + c1.imag * c2.real;
@@ -666,6 +926,9 @@ public class App {
 
     }
 
+    /**
+     * Este metodo se encarga de inicializar todas las variables globales.
+     */
     public static void iniciailizar() {
         operacion = 0;
         vector1.clear();

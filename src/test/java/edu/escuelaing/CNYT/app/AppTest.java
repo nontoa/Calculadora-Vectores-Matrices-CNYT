@@ -223,24 +223,127 @@ public class AppTest
     }
     
     /**
+     * Este metodo se encarga de probar la operacion de la adjunta
+     * de una matriz
+     */
+    public void testMatrizAdjunta(){
+        Complejo[][] res = new Complejo[2][2];
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(33.14, 45.6);
+        mat1[0][1] = new Complejo(14.7, -7.57);
+        mat1[1][0] = new Complejo(3.33,13.23);
+        mat1[1][1] = new Complejo(-9.69,10);        
+        res = App.matrizAdjunta(mat1, 2,2);
+        assertEquals("33,14", round.format(res[0][0].getReal()));
+        assertEquals("-45,60", round.format(res[0][0].getImag()));
+        assertEquals("3,33", round.format(res[0][1].getReal()));
+        assertEquals("-13,23", round.format(res[0][1].getImag()));
+        assertEquals("14,70", round.format(res[1][0].getReal()));
+        assertEquals("7,57", round.format(res[1][0].getImag()));
+        assertEquals("-9,69", round.format(res[1][1].getReal()));
+        assertEquals("-10,00", round.format(res[1][1].getImag()));
+        
+    }
+    
+    /**
      * Este metodo se encarga de probar la operacion de la norma
      * de una matriz
      */
     public void testMatrizNorma(){
         double res = 0.0;
         App.iniciailizar();
-        double[][] mat1 = new double[3][3];        
-        mat1[0][0] = 4.00;
-        mat1[0][1] = 5.00;
-        mat1[0][2] = -1.00;
-        mat1[1][0] = 3.00;
-        mat1[1][1] = 0.00;
-        mat1[1][2] = 4.00;
-        mat1[2][0] = -7.00;
-        mat1[2][1] = -2.00;
-        mat1[2][2] = 6.00;
-        res = App.normaMatriz(mat1, 3,3);
-        assertEquals("15,00", round.format(res));        
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(2,-5);
+        mat1[0][1] = new Complejo(-3,6);
+        mat1[1][0] = new Complejo(5,5);
+        mat1[1][1] = new Complejo(6,-3);
+        res = App.normaMatriz(mat1, 2,2);
+        assertEquals("13,00", round.format(res));   
+        
+    }
+    
+    /**
+     * Este metodo se encarga de probar la operacion verificacion unitaria
+     * de una matriz
+     */
+    public void testMatrizUnitaria(){        
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[3][3];        
+        mat1[0][0] = new Complejo(1, 0);
+        mat1[0][1] = new Complejo(0, 0);
+        mat1[0][2] = new Complejo(0, 0);
+        mat1[1][0] = new Complejo(0,0);
+        mat1[1][1] = new Complejo(1,0); 
+        mat1[1][2] = new Complejo(0, 0);
+        mat1[2][0] = new Complejo(0,0);
+        mat1[2][1] = new Complejo(0,0); 
+        mat1[2][2] = new Complejo(1, 0);        
+        assertTrue(App.matrizUnitaria(mat1, 3, 3));        
+        
+    }
+    
+    /**
+     * Este metodo se encarga de probar la operacion de la accion de una matriz
+     * sobre un vector.
+     */
+    public void testAccionMatrizVector(){        
+        App.iniciailizar();
+        Complejo[] res = new Complejo[3];
+        Complejo[] vec = new Complejo[3];
+        Complejo[][] mat1 = new Complejo[2][3];        
+        mat1[0][0] = new Complejo(-3, 5.5);
+        mat1[0][1] = new Complejo(5, 18.3);
+        mat1[0][2] = new Complejo(-6, 12.6);
+        mat1[1][0] = new Complejo(7,17.2);
+        mat1[1][1] = new Complejo(10,22); 
+        mat1[1][2] = new Complejo(-1, -5);        
+        vec[0]= new Complejo(-6,2.6);
+        vec[1]= new Complejo(-2,5.6);
+        vec[2]= new Complejo(5,12);
+        res = App.accionMatrizVector(mat1, vec, 2, 3);
+        
+        assertEquals("-289,98",round.format(res[0].getReal()));               
+        assertEquals("-58,40",round.format(res[0].getImag()));
+        assertEquals("-174,92",round.format(res[1].getReal()));               
+        assertEquals("-110,00",round.format(res[1].getImag()));
+    }
+    
+    /**
+     * Este metodo se encarga de probar la operacion de la distancia entre
+     * matrices.
+     */
+    public void testDistanciaMatrices(){
+        double res = 0.0;
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(2,-5);
+        mat1[0][1] = new Complejo(-3,6);
+        mat1[1][0] = new Complejo(5,5);
+        mat1[1][1] = new Complejo(6,-3);
+        Complejo[][] mat2 = new Complejo[2][2];        
+        mat2[0][0] = new Complejo(15,16);
+        mat2[0][1] = new Complejo(-35,-66.36);
+        mat2[1][0] = new Complejo(18.36,-11);
+        mat2[1][1] = new Complejo(6,88.24);
+        res = App.distanciaMatrices(mat1,mat2, 2,2);
+        assertEquals("125,02", round.format(res));   
+        
+    }
+    
+    
+    /**
+     * Este metodo se encarga de probar la operacion verificacion hermitiana
+     * de una matriz
+     */
+    public void testMatrizHermitiana(){        
+        App.iniciailizar();
+        Complejo[][] mat1 = new Complejo[2][2];        
+        mat1[0][0] = new Complejo(3, 0);
+        mat1[0][1] = new Complejo(2, 1);
+        mat1[1][0] = new Complejo(2,-1);
+        mat1[1][1] = new Complejo(1,0);                  
+        assertTrue(App.matrizHermitian(mat1, 2, 2));        
         
     }
     
