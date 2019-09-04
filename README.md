@@ -201,8 +201,7 @@ Cada método esta encargado de una tarea especifica. Hay métodos auxiliares que
 ```
 
 ### Multiplicación escalar de matrices complejas:
-```
-java
+```java
 
 /**
      * Este metodo se encarga de realizar la multiplicacion de dos matrices.
@@ -242,8 +241,7 @@ java
 ```
 
 ### Matriz Transpuesta:
-```
-java
+```java
 
 /**
      * Este metodo se encarga de calcular la traspuesta de una matriz.
@@ -278,8 +276,7 @@ java
 ```
 
 ### Matriz Conjugada:
-```
-java
+```java
 
 /**
      * Este metodo se encarga de calcular la conjugada de una matriz.
@@ -315,8 +312,7 @@ java
 ```
 
 ### Matriz Adjunta:
-```
-java
+```java
 /**
      * Este metodo se encarga de calcular la matriz adjunta.
      * @param mat Matriz inicial.
@@ -345,8 +341,7 @@ java
 ```
 
 ### Función para calcular la "acción" de una matriz sobre un vector:
-```
-java
+```java
 /**
      * Este metodo se encarga de la multiplicacion de una matriz por un vector.
      * @param mat Matriz inicial.
@@ -379,8 +374,7 @@ java
     }
 ```
 ### Norma de matrices:
-```
-java
+```java
 
 /**
      * Este metodo se encarga de calcular la norma de una matriz.
@@ -406,8 +400,7 @@ java
 ```
 
 ### Distancia entre matrices:
-```
-java
+```java
 /**
      * Este metodo se encarga de calcular la distancia entre dos matrices.
      * @param matA Matriz 1 incial.
@@ -426,8 +419,7 @@ java
 ```
 
 ### Matriz Unitaria:
-```
-java
+```java
 /**
      * Este metodo se encarga de verificar si una matriz es unitaria.
      * @param mat Matriz incial.
@@ -454,8 +446,7 @@ java
 ```
 
 ### Matriz Hermitiana:
-```
-java
+```java
 /**
      * Este metodo se encarga de verificar si una matriz es Hermitiana.
      * @param mat Matriz inicial.
@@ -479,8 +470,7 @@ java
 ```
 
 ### Producto Tensor:
-```
-java
+```java
 /**
      * Este metodo se encarga de calcular el poducto tensor entre dos matrices nxm.
      * @param mat1 Matriz 2 inicial.
